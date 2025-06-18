@@ -1,0 +1,72 @@
+{
+  "rules": [
+    {
+      "rule": {
+        "conditionSet": {
+          "joinOperator": "ANY_OF",
+          "conditions": [
+            {
+              "conditionType": "FILTER",
+              "filterDetails": {
+                "operator": "IS_NULL",
+                "operands": [
+                  {
+                    "value": "${input.lastKnownLocation}"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "successOutput": {
+          "data": {
+            "type": "NESTED",
+            "value": {
+              "result": {
+                "type": "STATIC",
+                "value": "BLOCK_WITH_REASON_UNKNOWN"
+              }
+            }
+          },
+          "actions": []
+        },
+        "failureOutput": {
+          "data": {
+            "type": "NESTED",
+            "value": {}
+          },
+          "actions": []
+        }
+      },
+      "priority": 1
+    },
+    {
+      "rule": {
+        "conditionSet": {
+          "conditions": []
+        },
+        "successOutput": {
+          "data": {
+            "type": "NESTED",
+            "value": {
+              "result": {
+                "type": "STATIC",
+                "value": "PROCEED"
+              }
+            }
+          },
+          "actions": []
+        },
+        "failureOutput": {
+          "data": {
+            "type": "NESTED",
+            "value": {}
+          },
+          "actions": []
+        }
+      },
+      "priority": 1
+    }
+  ],
+  "defaultOutput": {}
+}
