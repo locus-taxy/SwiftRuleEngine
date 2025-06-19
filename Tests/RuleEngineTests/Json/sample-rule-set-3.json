@@ -1,0 +1,176 @@
+
+{
+  "rules": [
+    {
+      "priority": 1,
+      "status": "ACTIVE",
+      "rule": {
+        "id": "rule_1",
+        "name": null,
+        "summary": null,
+        "conditionSet": {
+          "joinOperator": "ALL_OF",
+          "conditions": [
+            {
+              "id": "rule_1_condition_1",
+              "conditionType": "JOIN",
+              "joinDetails": {
+                "joinOperator": "ANY_OF",
+                "conditions": [
+                  {
+                    "id": "rule_1_condition_2",
+                    "conditionType": "FILTER",
+                    "joinDetails": null,
+                    "filterDetails": {
+                      "operator": "EQUALS",
+                      "operands": [
+                        {
+                          "id": "rule_1_value_1",
+                          "type": "DYNAMIC",
+                          "value": "${input.nextVisitStatus}"
+                        },
+                        {
+                          "id": "rule_1_value_2",
+                          "type": "DYNAMIC",
+                          "value": "ARRIVED"
+                        }
+                      ]
+                    },
+                    "loopDetails": null
+                  },
+                  {
+                    "id": "rule_1_condition_3",
+                    "conditionType": "FILTER",
+                    "joinDetails": null,
+                    "filterDetails": {
+                      "operator": "EQUALS",
+                      "operands": [
+                        {
+                          "id": "rule_1_value_3",
+                          "type": "DYNAMIC",
+                          "value": "${input.nextVisitStatus}"
+                        },
+                        {
+                          "id": "rule_1_value_4",
+                          "type": "DYNAMIC",
+                          "value": "STARTED"
+                        }
+                      ]
+                    },
+                    "loopDetails": null
+                  },
+                  {
+                    "id": "rule_1_condition_4",
+                    "conditionType": "FILTER",
+                    "joinDetails": null,
+                    "filterDetails": {
+                      "operator": "EQUALS",
+                      "operands": [
+                        {
+                          "id": "rule_1_value_5",
+                          "type": "DYNAMIC",
+                          "value": "${input.nextVisitStatus}"
+                        },
+                        {
+                          "id": "rule_1_value_6",
+                          "type": "DYNAMIC",
+                          "value": "TRANSACTING"
+                        }
+                      ]
+                    },
+                    "loopDetails": null
+                  }
+                ]
+              },
+              "filterDetails": null,
+              "loopDetails": null
+            }
+          ]
+        },
+        "successOutput": {
+          "id": null,
+          "actions": [],
+          "data": {
+            "type": "NESTED",
+            "value": {
+              "id": "value.rule_1_ruleOutput_1",
+              "result": {
+                "type": "STATIC",
+                "value": "PROCEED"
+              }
+            }
+          }
+        },
+        "failureOutput": {
+          "id": null,
+          "actions": [],
+          "data": {
+            "type": "NESTED",
+            "value": {
+              "id": "value.rule_1_ruleOutput_2"
+            }
+          }
+        }
+      }
+    },
+    {
+      "priority": 2,
+      "status": "ACTIVE",
+      "rule": {
+        "id": "rule_2",
+        "name": null,
+        "summary": null,
+        "conditionSet": {
+          "joinOperator": "ALL_OF",
+          "conditions": [
+            {
+              "id": "rule_2_condition_1",
+              "conditionType": "FILTER",
+              "joinDetails": null,
+              "filterDetails": {
+                "operator": "EQUALS",
+                "operands": [
+                  {
+                    "id": "rule_2_value_1",
+                    "type": "DYNAMIC",
+                    "value": "${input.nextVisitStatus}"
+                  },
+                  {
+                    "id": "rule_2_value_2",
+                    "type": "DYNAMIC",
+                    "value": "COMPLETED"
+                  }
+                ]
+              },
+              "loopDetails": null
+            }
+          ]
+        },
+        "successOutput": {
+          "id": null,
+          "actions": [],
+          "data": {
+            "type": "NESTED",
+            "value": {
+              "id": "value.rule_2_ruleOutput_1",
+              "result": {
+                "type": "STATIC",
+                "value": "PROCEED_WITH_CONFIRMATION"
+              }
+            }
+          }
+        },
+        "failureOutput": {
+          "id": null,
+          "actions": [],
+          "data": {
+            "type": "NESTED",
+            "value": {
+              "id": "value.rule_2_ruleOutput_2"
+            }
+          }
+        }
+      }
+    }
+  ]
+}
