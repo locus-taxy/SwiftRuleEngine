@@ -116,10 +116,19 @@ struct ExpressionEvaluatorTests {
         #expect(result7?.evaluatedValue == nil, "Evaluated value should be nil")
     }
 
-    @Test func expressionEval() async throws {
+    @Test func expressionEval1() async throws {
         let expression = Value(value: "${input.lastKnownLocation}")
         let result = try ExpressionEvaluator.evaluateValue(value: expression, consumerContext: TestConsumerContext())
         #expect(result?.evaluatedValue == nil)
+    }
+
+    @Test func expressionEval2() async throws {
+        let expression = Value(value: "${input.extendedTour.status.status}")
+        let testTour = TestExtendedTour(status: TestExtendedTourStatus(status: .queued))
+        let context = TestConsumerContext(tour: testTour)
+        let result = try ExpressionEvaluator.evaluateValue(value: expression, consumerContext: context)
+        let status = result?.evaluatedValue as? TestTourStatus
+        #expect(status == .queued)
     }
 }
 

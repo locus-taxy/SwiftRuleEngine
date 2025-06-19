@@ -1,0 +1,63 @@
+{
+  "rules": [
+    {
+      "priority": 1,
+      "status": "ACTIVE",
+      "rule": {
+        "id": "rule_1",
+        "name": null,
+        "summary": null,
+        "conditionSet": {
+          "joinOperator": "ALL_OF",
+          "conditions": [
+            {
+              "id": "rule_1_condition_1",
+              "conditionType": "FILTER",
+              "joinDetails": null,
+              "filterDetails": {
+                "operator": "EQUALS",
+                "operands": [
+                  {
+                    "id": "rule_1_value_1",
+                    "type": "DYNAMIC",
+                    "value": "${input.extendedTour.status.status}"
+                  },
+                  {
+                    "id": "rule_1_value_2",
+                    "type": "DYNAMIC",
+                    "value": "QUEUED"
+                  }
+                ]
+              },
+              "loopDetails": null
+            }
+          ]
+        },
+        "successOutput": {
+          "id": null,
+          "actions": [],
+          "data": {
+            "type": "NESTED",
+            "value": {
+              "id": "value.rule_1_ruleOutput_1",
+              "result": {
+                "type": "STATIC",
+                "value": "PROCEED"
+              }
+            }
+          }
+        },
+        "failureOutput": {
+          "id": null,
+          "actions": [],
+          "data": {
+            "type": "NESTED",
+            "value": {
+              "id": "value.rule_1_ruleOutput_2"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

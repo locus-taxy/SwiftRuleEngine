@@ -17,7 +17,7 @@ class RuleSetExecutorImpl<Output: Codable>: RuleSetExecutor {
         try executeFirstMatchInternal(clientId: clientId, ruleSet: ruleSet, consumerContext: consumerContext, timeZoneProvider: timeZoneProvider)
     }
 
-    func executeFirstMatchInternal(clientId: String, ruleSet: RuleSet, ruleSetConfig: RuleSetConfig? = nil, consumerContext: ConsumerContext, timeZoneProvider: TimeZoneProvider) throws -> Output? {
+    private func executeFirstMatchInternal(clientId: String, ruleSet: RuleSet, ruleSetConfig: RuleSetConfig? = nil, consumerContext: ConsumerContext, timeZoneProvider: TimeZoneProvider) throws -> Output? {
 
         let executionLog = RuleEngineExecutionLog(clientId: clientId, ruleSetConfig: ruleSetConfig, consumerContext: consumerContext)
 

@@ -14,7 +14,8 @@ enum ExpressionEvaluator {
         }
 
         guard expressionString.hasPrefix("${"), expressionString.hasSuffix("}") else {
-            throw RuleEngineError.generic(message: "Invalid exprssion syntax")
+            // Return the string itself as value, don't evaluate
+            return EvaluateValueResult(value: value, evaluatedValue: expressionString)
         }
 
         let startIndex = expressionString.index(expressionString.startIndex, offsetBy: 2)
@@ -92,10 +93,24 @@ enum ExpressionEvaluator {
         }
 
         let mirror = Mirror(reflecting: object)
+        for child in mirror.children {
+            print("Label: \(String(describing: child.label)), value: \(child.value)")
+        }
         if let child = mirror.children.first(where: { $0.label == key }) {
-            return child.value
+            return unwrapOptional(child.value)
         }
 
+        return nil
+    }
+
+    private static func unwrapOptional(_ any: Any) -> Any? {
+        let mirror = Mirror(reflecting: any)
+        if mirror.displayStyle != .optional {
+            return any
+        }
+        if let child = mirror.children.first {
+            return unwrapOptional(child.value)
+        }
         return nil
     }
 
