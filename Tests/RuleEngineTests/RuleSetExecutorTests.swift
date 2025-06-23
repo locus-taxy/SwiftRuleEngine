@@ -114,6 +114,13 @@ struct RuleSetExecutorTests {
             timeZoneProvider: TestTimeZoneProvider()
         )
         #expect(result5 == nil)
+
+        let result6 = try executor.executeFirstMatch(
+            clientId: "clientId", ruleSet: ruleSet,
+            consumerContext: TestConsumerContext(),
+            timeZoneProvider: TestTimeZoneProvider()
+        )
+        #expect(result6 == nil)
     }
 }
 
