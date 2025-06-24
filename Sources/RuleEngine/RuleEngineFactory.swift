@@ -1,6 +1,6 @@
-enum RuleEngineFactory {
+enum RuleEngineFactory<Output: Codable> {
 
-    public static func createRuleSetExecutor<Output: Codable>() -> some RuleSetExecutor {
+    public static func createRuleSetExecutor() -> some RuleSetExecutor {
         return RuleSetExecutorImpl<Output>()
     }
 }
