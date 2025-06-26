@@ -137,21 +137,10 @@ struct TestConsumerContext: ConsumerContext {
     }
 
     var inputParams: [String: Any] {
-
         var inputs = [String: Any]()
-
-        if let location = self.location {
-            inputs["lastKnownLocation"] = location
-        }
-
-        if let extendedTour = self.tour {
-            inputs["extendedTour"] = extendedTour
-        }
-
-        if let nextVisitStatus = self.visitStatus {
-            inputs["nextVisitStatus"] = nextVisitStatus
-        }
-
+        inputs["lastKnownLocation"] = location
+        inputs["extendedTour"] = tour
+        inputs["nextVisitStatus"] = visitStatus
         return inputs
     }
 }
